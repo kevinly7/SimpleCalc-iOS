@@ -63,7 +63,12 @@ class ViewController: UIViewController {
         } else {
             total = current
         }
-        display.text = "\(total!)"
+        let result = "\(total!)"
+        if (result.hasSuffix(".0")) {
+            display.text = "\(Int(total!))"
+        } else {
+            display.text = result
+        }
         operation = sender.currentTitle!
     }
     
@@ -73,7 +78,12 @@ class ViewController: UIViewController {
             current = Double(display.text!)
             arrayCount.append(current!)
             total = Double(arrayCount.count)
-            display.text = "\(total!)"
+            let result = "\(total!)"
+            if (result.hasSuffix(".0")) {
+                display.text = "\(Int(total!))"
+            } else {
+                display.text = result
+            }
             canCount = false
         }
     }
@@ -85,13 +95,29 @@ class ViewController: UIViewController {
             arrayTotal += Double(current!)
             arrayAvg.append(current!)
             total = arrayTotal / Double(arrayAvg.count)
-            display.text = "\(total!)"
+            let result = "\(total!)"
+            if (result.hasSuffix(".0")) {
+                display.text = "\(Int(total!))"
+            } else {
+                display.text = result
+            }
             canCount = false
         }
     }
     
     @IBAction func fact(sender: UIButton) {
-        
+        isTyping = false
+        current = Double(display.text!)
+        total = 1
+        for var index = 1.0; index <= current; index++ {
+            total = total! * index
+        }
+        let result = "\(total!)"
+        if (result.hasSuffix(".0")) {
+            display.text = "\(Int(total!))"
+        } else {
+            display.text = result
+        }
     }
 
     @IBAction func equals(sender: UIButton) {
@@ -113,7 +139,12 @@ class ViewController: UIViewController {
                 break
         }
         if total != nil {
-            display.text = "\(total!)"
+            let result = "\(total!)"
+            if (result.hasSuffix(".0")) {
+                display.text = "\(Int(total!))"
+            } else {
+                display.text = result
+            }
         }
         isTyping = false
         total = nil
@@ -135,8 +166,4 @@ class ViewController: UIViewController {
         arrayTotal = 0.0
         arrayAvg = [Double]()
     }
-    
-    
-    
 }
-
